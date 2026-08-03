@@ -2,8 +2,8 @@
 General hacking of Microsoft LifeCam VX-700
 <br>
 It includes
-* Reading SPI flash using usb (wowowow)
-* Writing SPI flash using usb (not yet)
+* Reading memory using usb (wowowow)
+* Writing memory using usb (not yet)
 * Other things.. (added soon)
 
 # Specs 
