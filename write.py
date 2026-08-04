@@ -4,21 +4,21 @@ import usb.util
 import sys
 import time
 
-if len(sys.argv) != 2:
-    print(" gimme them!!!")
+if len(sys.argv) != 3:
     print(f"usage:   {sys.argv[0]} input.bin 0x[adress]")
     sys.exit(1)
 
 dev = usb.core.find(idVendor=0x045e, idProduct=0x0770)
 if dev is None:
-    raise RuntimeError("check device")
+    raise RuntimeError("device not found")
 
 if dev.is_kernel_driver_active(0):
+    print("detaching kernel driver")
     dev.detach_kernel_driver(0)
 
 try:
     cfg = dev.get_active_configuration()
-    print("device already configured:", cfg.bConfigurationValue)
+    print("device already configured")
 except usb.core.USBError as e:
     print("Device not configured", e)
     print("Set configuration")
@@ -42,6 +42,7 @@ with open(input, "rb") as f:
 total = len(data)
 cur_adress = 0
 
+print(f"writing in {chunk_size} byte chunks")
 print(f"base adress:0x{base:04X}")
 print(f"size:{total} bytes")
 
@@ -52,6 +53,6 @@ while cur_adress < total:
     dev.ctrl_transfer(bmRequestType, bRequest, wValue, wIndex, chunk)
     cur_adress += writebytes
     percent = cur_adress * 100 / total
-    print(f"\rwriting: %{percent:.1f} " f"({cur_adress}/{total} bytes) "f"adress :0x{wValue:04X}", end="", flush=True)
-    time.sleep(0.001)
-print(f"\nwrote {total}")
+    print(f"\rwriting {cur_adress}/{total} bytes " f"({percent:.1f}%) " f"at address 0x{wValue:04X}", end="", flush=True)
+    time.sleep(0.0001)
+print(f"\nwrote {total} bytes")
