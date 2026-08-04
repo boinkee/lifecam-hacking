@@ -31,7 +31,7 @@ wIndex = 0x0000
 # sizes
 total_size = 65536
 chunk_size = 255
-current_address =
+current_address = 0
 
 print(f"Read start File:{OUTPUT_FILE}")
 
