@@ -2,7 +2,7 @@
 import usb.core
 import usb.util
 
-dev = usb.core.find(idVendor=045e, idProduct=0770)
+dev = usb.core.find(idVendor=0x045e, idProduct=0x0770)
 if dev is None:
     raise RuntimeError("check device")
 
