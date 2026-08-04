@@ -6,7 +6,7 @@ import sys
 import usb.core
 import time
 # the holy flash file
-OUTPUT_FILE = "flasa.bin"
+OUTPUT_FILE = "flash.bin"
 dev = usb.core.find(idVendor=0x045E, idProduct=0x0770)
 
 if dev is None:
@@ -23,13 +23,13 @@ try:
 except usb.core.USBError as e:
     print("Device not configured", e)
     print("Set configuration")
-    dev.set_configuration
+    dev.set_configuration()
 
 bmRequestType = 0xC0
-bRequest = 0x00
+bRequest = 0x04
 wIndex = 0x0000
 # sizes
-total_size = 7888
+total_size = 65536
 chunk_size = 2048
 current_address = 0
 
