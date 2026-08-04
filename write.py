@@ -23,6 +23,6 @@ for req in range(0x100):
     try:
         dev.ctrl_transfer(bmRequestType, req, wIndex, wValue, None, timeout=100)
         print(f"bRequest=0x{req:02X}  seems good")
-    except usb.core.USBError:
-        pass
+    except usb.core.USBError as e:
+        print(f"not good: {e}")
 print ("done")
