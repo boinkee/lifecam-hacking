@@ -18,15 +18,12 @@ Example output from  microsoft vx-700 is given as example_flash.bin
 <br>
 It is confirmed that read output is not from RAM (or other volatile memory).
 <br>
-Other values are these:
-<br>
-bRequest=0x00  OK  len=8  data=0000020000010000
-<br>
-bRequest=0x03  OK  len=8  data=534e394332353000 > SN9C250 (BFG?)
-<br>
-bRequest=0x05  OK  len=2  data=0101 
-<br>
-bRequest=0x08  OK  len=8  data=0000020000010000
+Other values are
+* 0x00 (write ?)
+* 0x03 (write 0x40)
+* 0x04 (read 0x0c)
+* 0x05
+* 0x08
 
 # patch.py 
 Patcher for flash.bin
@@ -45,11 +42,8 @@ You change bRequest, value, index, etc.
 This is the copy of read.py
 
 # write.py
-This doesnt work.
-<br>
-We need to find the values to write.
-<br>
-Otherwise it throws an timeout error.
+write.py writes input.bin to the device
+(not fully tested)
 
 # analyze8051.py
 vibe coded. (I dont have time)
