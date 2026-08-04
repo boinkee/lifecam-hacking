@@ -12,4 +12,8 @@ It includes
 * Ram :??
 * Green Led
 <br>
-Its not that capable, but atleast good
+Read.py reads memory and saves it to flash.bin.
+<br>
+Example output from  microsoft vx-700 is given as example_flash.bin
+<br>
+It is confirmed that read output is not from RAM (or other volatile memory).

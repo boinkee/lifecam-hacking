@@ -5,24 +5,32 @@ import sys
 import usb.core
 import time
 # the holy flash file
-OUTPUT_FILE = "flash_output.bin"
+OUTPUT_FILE = "flash.bin"
 dev = usb.core.find(idVendor=0x045E, idProduct=0x0770)
 
 if dev is None:
     raise ValueError("Device not found! Default VID/PID: 045E 0770")
+print("found device")
 
-if dev.is_kernel_driver_active(0):
-    dev.detach_kernel_driver(0)
+if dev.is_kernel_driver_active(3):
+    print("detach kernel driver")
+    dev.detach_kernel_driver(3)
 
-dev.set_configuration()
+try:
+    cfg = dev.get_active_configuration()
+    print("device already configured", cfg.bConfigurationValue)
+except usb.core.USBError as e:
+    print("Device not configured", e)
+    print("Set configuration")
+    dev.set_configuration
 
 bmRequestType = 0xC0
 bRequest = 0x04
 wIndex = 0x0000
 # sizes
-total_size = 65536     # 64 KB
-chunk_size = 255       
-current_address = 0    
+total_size = 65536
+chunk_size = 255
+current_address = 
 
 print(f"Read start File:{OUTPUT_FILE}")
 
