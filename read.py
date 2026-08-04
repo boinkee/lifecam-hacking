@@ -1,5 +1,6 @@
+#!/usr/bin/python3
 # To read the flash over usb, we need specific vendor commands.
-# For example bmRequestType C0 and bRequest 0x04. 
+# For example bmRequestType C0 and bRequest 0x04.
 # And to read a specific area, we need to change the value block.
 import sys
 import usb.core
