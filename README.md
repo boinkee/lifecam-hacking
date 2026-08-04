@@ -43,7 +43,7 @@ This is the copy of read.py
 
 # write.py
 write.py writes input.bin to the device
-(not fully tested)
+But it isnt persistent..
 
 # analyze8051.py
 vibe coded. (I dont have time)
