@@ -5,8 +5,8 @@ import sys
 import time
 
 if len(sys.argv) != 2:
-    print(" gimme the adress!!!")
-    print(f"usage:   {sys.argv[0]} 0x[adress]")
+    print(" gimme them!!!")
+    print(f"usage:   {sys.argv[0]} input.bin 0x[adress]")
     sys.exit(1)
 
 dev = usb.core.find(idVendor=0x045e, idProduct=0x0770)
@@ -28,10 +28,10 @@ except usb.core.USBError as e:
 bmRequestType = 0x40 # out command
 wIndex = 0x0000
 bRequest = 0x03
-input = "input.bin"
+input = sys.argv[1]
 chunk_size = 64
 try:
-    base = int(sys.argv[1], 0)
+    base = int(sys.argv[2], 0)
 except ValueError:
     print("invalid adress!")
     sys.exit(1)
